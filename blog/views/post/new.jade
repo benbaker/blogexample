@@ -28,7 +28,8 @@ block body
 					var title = $("#title").val()
 					var postObject = { title:title, body:body }
 					io.socket.post("/post/update/"+post_id, postObject, function(post, response){
-						alert(post.id)
+						if(!post.id)
+							alert("broken")
 					})
 				}
 				if(!post_id){
@@ -36,7 +37,8 @@ block body
 					var title = $("#title").val()
 					var postObject = { title:title, body:body }
 					io.socket.post("/post/create", postObject, function(post, response){
-						alert(post.id)
+						if(!post.id)
+							alert("broken")
 					})
 				}
 			})
