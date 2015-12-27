@@ -1,3 +1,9 @@
 # blog
 
-a [Sails](http://sailsjs.org) application
+### Install
+git clone this
+npm install
+
+### Use
+npm start
+http://localhost:1337
