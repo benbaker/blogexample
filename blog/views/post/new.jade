@@ -1,45 +1,58 @@
 extends ../layout 
 block body
-	.ui.container
-		br
-		.ui.huge.header New Post
-		.ui.fluid.input
-			if post
-				input(type="hidden", value="#{post.id}")#post_id
-				input(type="text", placeholder="Title", value="#{post.title}")#title
-			else
-				input(type="text", placeholder="Title")#title
+    .ui.container
+        br
+        .ui.huge.header New Post
+        .ui.fluid.input
+            if post
+                input(type="hidden", value="#{post.id}")#post_id
+                input(type="text", placeholder="Title", value="#{post.title}")#title
+            else
+                input(type="text", placeholder="Title")#title
 
-		br
-		.ui.fluid
-			if post
-				textarea(placeholder="Body")#editor= post.body
-			else
-				textarea(placeholder="Body")#editor
-		br
-		.ui.right.floated.huge.blue.button Submit
-		script.
-			tinymce.init({ selector:'textarea',elements : "thisID", });
+        br
+        .ui.fluid
+            if post
+                textarea(placeholder="Body")#editor= post.body
+            else
+                textarea(placeholder="Body")#editor
+        br
+        .ui.right.floated.huge.blue.button Submit
 
-			$(".blue.button").on('click', function(evt){
-				var post_id =  $("#post_id").val()
-				if(post_id){
-					var body = tinymce.activeEditor.getContent()
-					var title = $("#title").val()
-					var postObject = { title:title, body:body }
-					io.socket.post("/post/update/"+post_id, postObject, function(post, response){
-						if(!post.id)
-							alert("broken")
-					})
-				}
-				if(!post_id){
-					var body = tinymce.activeEditor.getContent()
-					var title = $("#title").val()
-					var postObject = { title:title, body:body }
-					io.socket.post("/post/create", postObject, function(post, response){
-						if(!post.id)
-							alert("broken")
-					})
-				}
-			})
+    .ui.container
+        .ui.completed.centered.small.basic.modal
+              i.close.icon
+              .header
+                | Your post has been updated
+
+        script.
+            tinymce.init({ selector:'textarea',elements : "thisID", });
+
+            $(".blue.button").on('click', function(evt){
+                var post_id =  $("#post_id").val()
+                if(post_id){
+                    var body = tinymce.activeEditor.getContent()
+                    var title = $("#title").val()
+                    var postObject = { title:title, body:body }
+                    io.socket.post("/post/update/"+post_id, postObject, function(post, response){
+                        if(!post.id)
+                            alert("broken")
+                        else
+                            $('.completed.modal').modal({ blurring: true }).modal('show')
+
+                    })
+                }
+                if(!post_id){
+                    var body = tinymce.activeEditor.getContent()
+                    var title = $("#title").val()
+                    var postObject = { title:title, body:body }
+                    io.socket.post("/post/create", postObject, function(post, response){
+                        if(!post.id)
+                            alert("broken")
+                        else
+                            $('.completed.modal').modal({ blurring: true }).modal('show')
+
+                    })
+                }
+            })
 
