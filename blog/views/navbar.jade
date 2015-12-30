@@ -1,11 +1,12 @@
-.ui.container
-  .ui.secondary.menu
-    a(href="/").item
-      .ui.medium.header  Home  
-      include navitems
-    .right.menu
+.ui.fixed.inverted.main.menu
+    .ui.container
+      .ui.inverted.secondary.pointing.menu
+        a(href="/").item
+          .ui.inverted.medium.header  Home  
+          include navitems
+    .right.inverted.menu
       .item
-        .ui.transparent.icon.input
+        .ui.inverted.transparent.icon.input
           input(type='text', placeholder='Search...')
           i.search.link.icon
 
