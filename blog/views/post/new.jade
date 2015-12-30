@@ -2,41 +2,40 @@ extends ../layout
 block body
     .ui.container
         br
-        .ui.segment
-            .ui.huge.header New
-            .ui.fluid.input
+        .ui.huge.header 
+            if post 
+                h1 Update
+            else 
+                h1 New
+        .ui.fluid.input
+            if post
+                input(type="hidden", value="#{post.id}")#post_id
+                input(type="text", placeholder="Title", value="#{post.title}")#title
+            else
+                input(type="text", placeholder="Title")#title
+
+        br
+        .ui.fluid
+            if post
+                textarea(placeholder="Body")#editor= post.body
+            else
+                textarea(placeholder="Body")#editor
+        br
+        .ui.right.floated.huge.olive.button Submit
+
+    .ui.container
+        .ui.completed.centered.small.basic.modal
+              i.close.icon
+              .header
                 if post
-                    input(type="hidden", value="#{post.id}")#post_id
-                    input(type="text", placeholder="Title", value="#{post.title}")#title
-                else
-                    input(type="text", placeholder="Title")#title
-
-            br
-            .ui.fluid
-                if post
-                    textarea(placeholder="Body")#editor= post.body
-                else
-                    textarea(placeholder="Body")#editor
-            br
-            .ui.floating.huge.blue.button Submit
-            br
-            br
-            br
-
-
-
-        .ui.container
-            .ui.completed.centered.small.basic.modal
-                  i.close.icon
-                  .header
                     | Your post has been updated
-
-
+                else
+                    | Your post has been created
 
         script.
             tinymce.init({ selector:'textarea',elements : "thisID", });
 
-            $(".blue.button").on('click', function(evt){
+            $(".olive.button").on('click', function(evt){
                 var post_id =  $("#post_id").val()
                 if(post_id){
                     var body = tinymce.activeEditor.getContent()
