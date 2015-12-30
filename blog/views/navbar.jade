@@ -1,0 +1,17 @@
+.ui.container
+  .ui.secondary.menu
+    a(href="/").item
+      .ui.medium.header  blog  
+    a.item
+    a(href="/post/all").active.item#postsTab
+      | Posts
+    a(href="/comment/all").item#commentsTab
+      | Comments
+    a(href="/person/all").item#peopleTab
+      | People
+    .right.menu
+      .item
+        .ui.transparent.icon.input
+          input(type='text', placeholder='Search...')
+          i.search.link.icon
+

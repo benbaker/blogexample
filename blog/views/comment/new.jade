@@ -1,0 +1,23 @@
+.ui.container
+    textarea(placeholder="Body").ui.input
+    br
+    .ui.small.blue.button Add Comment
+    br
+    br
+    script.
+        tinymce.init({ 
+            selector:'textarea',
+            height: 80,
+            theme: 'modern',
+            elements : "thisID",
+            toolbar: false,
+            statusbar: false,
+            menubar: false
+         });
+
+        $(".blue.button").on( "click", function(e) {
+            var body = tinymce.activeEditor.getContent()
+            io.socket.post("/comment/create", { body:body, post_id: "#{post.id}"}, function(a,b){
+                console.log(a,b)
+            })
+        })

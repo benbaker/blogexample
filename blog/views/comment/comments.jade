@@ -1,0 +1,14 @@
+extends ../layout
+block body
+    br
+    for comment in comments
+        .ui.segment
+            .ui.small.header=comment.author
+            .ui.tiny.right.floated.label=comment.createdAt
+            .ui.divider
+            !{comment.body}
+
+    script.
+        $(".active").removeClass("active");
+        $("#commentsTab").addClass("active");
+

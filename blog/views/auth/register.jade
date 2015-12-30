@@ -1,0 +1,16 @@
+extends ../layout
+block body
+  br
+  if errors
+    for err in errors
+      p=err
+
+  form(role="form", action="/auth/register", method="post")
+    input(type="text", name="username", placeholder="Username")
+    input(type="text", name="email" ,placeholder="Email")
+    input(type="password", name="password", placeholder="Password")
+    button(type="submit") Sign up
+
+    if providers
+        for provider in providers
+            a(href="/auth/{{slug}}" role="button") {{name}}

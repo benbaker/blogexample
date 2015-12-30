@@ -1,0 +1,18 @@
+extends ../layout
+block body
+  br
+  if errors
+    for err in errors
+      p=err
+
+  form(role="form" action="/auth/local" method="post")
+
+    input(type="text" name="identifier" placeholder="Username or Email")
+    input(type="password" name="password" placeholder="Password")
+    button(type="submit") Sign in
+
+
+    if providers
+        for provider in providers
+          br
+          a.small.basic.button(href="/auth/#{provider.slug}" role="button")= provider.name
