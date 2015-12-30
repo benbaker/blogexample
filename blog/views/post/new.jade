@@ -1,7 +1,6 @@
 extends ../layout 
 block body
     .ui.container
-        br
         .ui.huge.header 
             if post 
                 h1 Update
@@ -55,11 +54,14 @@ block body
                     var postObject = { title:title, body:body }
                     io.socket.post("/post/create", postObject, function(post, response){
                         if(!post.id)
-                            alert("broken")
+                            alert("broken new")
                         else
                             $('.completed.modal').modal({ blurring: true }).modal('show')
 
                     })
                 }
             })
+            $(".active").removeClass("active");
+            $(".newPost").addClass("active");
+
 

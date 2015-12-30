@@ -13,4 +13,4 @@ module.exports =
 		Post.findOne req.query.id
 			.populate('comments')
 			.exec (err,post) ->
-				res.view "post/view", post:post
+				res.view "post/viewpost", post:post

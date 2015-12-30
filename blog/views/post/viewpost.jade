@@ -1,12 +1,14 @@
 extends ../layout
 block body
     .ui.container
-        br
         if post
-            h5.left.floated= post.author
-            .ui.huge.header= post.title
+            h2.ui.header
+              .content !{post.title}
+                .sub.header !{post.author}
             br
             span !{post.body}
+        br
+        hr
         br
         include ../comment/new
         if post.comments
@@ -14,4 +16,4 @@ block body
                 include ../comment/comment
     script.
         $(".active").removeClass("active");
-        $("#postsTab").addClass("active");
+        $(".postsTab").addClass("active");

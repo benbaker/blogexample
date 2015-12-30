@@ -16,6 +16,14 @@ html
         p
         .ui.huge.header 
             include navbar
+
+    br
     .ui.container
-        block body
+      .ui.grid
+        .four.wide.column
+            include sidebar
+        .twelve.wide.stretched.column
+            .ui.container
+                block body
+
     noscript Please enable JavaScript and refresh this page

@@ -1,0 +1,22 @@
+extends ../layout
+block body
+    br
+    if persons.length > 0
+        for person in persons
+            .ui.segment
+                .ui.small.header=person.name
+                .ui.tiny.right.floated.label=person.createdAt
+                .ui.divider
+                !{person.description}
+
+    else
+        .ui.icon.message
+          i.meh.icon
+          .content
+            .header
+              | There are no people to view
+
+    script.
+        $(".active").removeClass("active");
+        $(".peopleTab").addClass("active");
+

@@ -1,10 +1,17 @@
 extends ../layout
 block body
-		br
-		if posts
-			for post in posts
-				.ui.header
-					a(href="/post/view?id=#{post.id}")= post.title	
-					a.ui.right.floated.tiny.basic.button(href="/post/edit?id=#{post.id}") EDIT
-					a.ui.right.floated.tiny.basic.button(href="/post/destroy/#{post.id}") DELETE
-				.ui.divider
+        br
+        if (posts.length > 0)
+            for post in posts
+                .ui.header
+                    a(href="/post/view?id=#{post.id}")= post.title  
+                    a.ui.right.floated.tiny.basic.button(href="/post/edit?id=#{post.id}") EDIT
+                    a.ui.right.floated.tiny.basic.button(href="/post/destroy/#{post.id}") DELETE
+                .ui.divider
+        
+        else
+            .ui.icon.message
+              i.meh.icon
+              .content
+                .header
+                  | There are no posts to view
