@@ -2,7 +2,11 @@ extends ../layout
 block body
     .ui.container
         br
-        .ui.huge.header New Post
+        .ui.huge.header 
+            if post 
+                h1 Update
+            else 
+                h1 New
         .ui.fluid.input
             if post
                 input(type="hidden", value="#{post.id}")#post_id
@@ -17,18 +21,21 @@ block body
             else
                 textarea(placeholder="Body")#editor
         br
-        .ui.right.floated.huge.blue.button Submit
+        .ui.right.floated.huge.olive.button Submit
 
     .ui.container
         .ui.completed.centered.small.basic.modal
               i.close.icon
               .header
-                | Your post has been updated
+                if post
+                    | Your post has been updated
+                else
+                    | Your post has been created
 
         script.
             tinymce.init({ selector:'textarea',elements : "thisID", });
 
-            $(".blue.button").on('click', function(evt){
+            $(".olive.button").on('click', function(evt){
                 var post_id =  $("#post_id").val()
                 if(post_id){
                     var body = tinymce.activeEditor.getContent()
