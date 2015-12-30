@@ -12,6 +12,10 @@ html
     script(src="/js/dependencies/sails.io.js")
     script(src="//cdn.tinymce.com/4/tinymce.min.js")
 
-    block body
-
+    .ui.container
+        p
+        .ui.huge.header 
+            include navbar
+    .ui.container
+        block body
     noscript Please enable JavaScript and refresh this page

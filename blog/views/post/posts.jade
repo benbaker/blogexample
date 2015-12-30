@@ -1,11 +1,10 @@
 extends ../layout
 block body
-	.ui.container
 		br
 		if posts
 			for post in posts
-				.ui.segment
-					a.ui.right.floated.tiny.button(href="/post/edit?id=#{post.id}") Edit
-					a.ui.right.floated.tiny.blue.button(href="/post/view?id=#{post.id}") View
-					h1= post.title		
-					h2 !{post.body}
+				.ui.header
+					a(href="/post/view?id=#{post.id}")= post.title	
+					a.ui.right.floated.tiny.basic.button(href="/post/edit?id=#{post.id}") EDIT
+					a.ui.right.floated.tiny.basic.button(href="/post/destroy/#{post.id}") DELETE
+				.ui.divider

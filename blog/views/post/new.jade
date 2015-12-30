@@ -2,28 +2,36 @@ extends ../layout
 block body
     .ui.container
         br
-        .ui.huge.header New Post
-        .ui.fluid.input
-            if post
-                input(type="hidden", value="#{post.id}")#post_id
-                input(type="text", placeholder="Title", value="#{post.title}")#title
-            else
-                input(type="text", placeholder="Title")#title
+        .ui.segment
+            .ui.huge.header New
+            .ui.fluid.input
+                if post
+                    input(type="hidden", value="#{post.id}")#post_id
+                    input(type="text", placeholder="Title", value="#{post.title}")#title
+                else
+                    input(type="text", placeholder="Title")#title
 
-        br
-        .ui.fluid
-            if post
-                textarea(placeholder="Body")#editor= post.body
-            else
-                textarea(placeholder="Body")#editor
-        br
-        .ui.right.floated.huge.blue.button Submit
+            br
+            .ui.fluid
+                if post
+                    textarea(placeholder="Body")#editor= post.body
+                else
+                    textarea(placeholder="Body")#editor
+            br
+            .ui.floating.huge.blue.button Submit
+            br
+            br
+            br
 
-    .ui.container
-        .ui.completed.centered.small.basic.modal
-              i.close.icon
-              .header
-                | Your post has been updated
+
+
+        .ui.container
+            .ui.completed.centered.small.basic.modal
+                  i.close.icon
+                  .header
+                    | Your post has been updated
+
+
 
         script.
             tinymce.init({ selector:'textarea',elements : "thisID", });

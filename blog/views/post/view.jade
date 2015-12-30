@@ -1,9 +1,17 @@
 extends ../layout
 block body
-	.ui.container
-		br
-		if post
-			h5.left.floated= post.author
-			h1= post.title
-			br
-			span !{post.body}
+    .ui.container
+        br
+        if post
+            h5.left.floated= post.author
+            .ui.huge.header= post.title
+            br
+            span !{post.body}
+        br
+        include ../comment/new
+        if post.comments
+            for comment in post.comments
+                include ../comment/comment
+    script.
+        $(".active").removeClass("active");
+        $("#postsTab").addClass("active");
